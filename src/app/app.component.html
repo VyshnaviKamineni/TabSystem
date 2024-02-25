@@ -1,0 +1,12 @@
+<div class="tabs-container">
+  <div *ngFor="let tab of tabs; let i = index" class="tab" [class.active]="currentIndex === i">
+    <span (click)="switchTab(i)">Tab {{ i + 1 }}</span>
+    <span class="close-btn" (click)="closeTab(i)">x</span>
+  </div>
+  <div class="add-tab" (click)="addTab()">+</div>
+</div>
+
+<div class="iframe-container">
+  <input *ngIf="currentIndex !== null && tabs[currentIndex]" [(ngModel)]="tabs[currentIndex]!.url" (keyup.enter)="loadURL()" placeholder="Enter URL">
+  <iframe *ngIf="currentIndex !== null && tabs[currentIndex]" [src]="tabs[currentIndex]!.url"></iframe>
+</div>
